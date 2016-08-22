@@ -1,0 +1,16 @@
+registry:
+  image: registry:2
+  restart: always
+  mem_limit: 128m
+  ports:
+    - 5000:5000
+  environment:
+    REGISTRY_HTTP_TLS_CERTIFICATE: /etc/certs/domain.crt
+    REGISTRY_HTTP_TLS_KEY: /etc/certs/domain.key
+    REGISTRY_AUTH: htpasswd
+    REGISTRY_AUTH_HTPASSWD_PATH: /etc/auth/htpasswd
+    REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+  # volumes: # not with triton
+  #   - /var/data:/var/lib/registry
+  #   - /etc/certs:/certs
+  #   - /etc/auth:/auth
